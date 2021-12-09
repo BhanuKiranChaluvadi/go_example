@@ -1,0 +1,22 @@
+apiVersion: v1      
+kind: URCap
+urcap:
+  name: hello-port 
+  vendor: universal-robots
+  version: 1.0 
+artifacts:
+  containers:
+  - name: myservice-name
+    image: myservice-image
+    ports:
+    - name: http
+      containerPort: 8080
+      protocol: TCP         # we might not need
+    volumeMounts:
+    - mountPath: /mount
+  osgibundles: 
+  - name:
+    bundle: 
+  webarchives:
+  - name:
+    bundle: 
