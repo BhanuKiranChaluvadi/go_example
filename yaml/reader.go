@@ -5,7 +5,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v2"
+	// "gopkg.in/yaml.v3"
 )
 
 type MetaData struct {
@@ -29,14 +30,14 @@ type artifacts struct {
 type container struct {
 	Name         string        `yaml:"name"`
 	Image        string        `yaml:"image"`
-	Ports        []port        `yaml:"ports,flow"`
-	VolumeMounts []volumeMount `yaml:"volumeMounts",flow`
+	Ports        []port        `yaml:"ports"`
+	VolumeMounts []volumeMount `yaml:"volumeMounts"`
 }
 
 type port struct {
 	Name          string `yaml:"name"`
 	ContainerPort int    `yaml:"containerPort"`
-	Protocol      string `yaml:"protocol"`
+	Protocol      string `yaml:"protocol", omitempty`
 }
 
 type volumeMount struct {
@@ -60,11 +61,12 @@ func readMetaData(path string) (*MetaData, error) {
 	}
 
 	t := &MetaData{}
-	err = yaml.Unmarshal(buff, t)
+
+	err = yaml.UnmarshalStrict(buff, t)
 	if err != nil {
 		return nil, fmt.Errorf("in file %q: %v", path, err)
 	}
-	fmt.Printf("--- t:\n%v\n\n", *t)
+	// fmt.Printf("--- t:\n%v\n\n", *t)
 
 	d, err := yaml.Marshal(&t)
 	if err != nil {
@@ -72,19 +74,20 @@ func readMetaData(path string) (*MetaData, error) {
 	}
 	fmt.Printf("--- t dump:\n%s\n\n", string(d))
 
-	m := make(map[interface{}]interface{})
-	err = yaml.Unmarshal([]byte(buff), &m)
-	if err != nil {
-		log.Fatalf("error: %v", err)
-	}
-	fmt.Printf("--- m:\n%v\n\n", m)
+	/*
+		m := make(map[interface{}]interface{})
+		err = yaml.Unmarshal([]byte(buff), &m)
+		if err != nil {
+			log.Fatalf("error: %v", err)
+		}
+		fmt.Printf("--- m:\n%v\n\n", m)
 
-	d, err = yaml.Marshal(&m)
-	if err != nil {
-		log.Fatalf("error: %v", err)
-	}
-	fmt.Printf("--- m dump:\n%s\n\n", string(d))
-
+		d, err = yaml.Marshal(&m)
+		if err != nil {
+			log.Fatalf("error: %v", err)
+		}
+		fmt.Printf("--- m dump:\n%s\n\n", string(d))
+	*/
 	return t, nil
 }
 
@@ -93,5 +96,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%v", *data)
+	// fmt.Printf("%v", *data)
+
+	fmt.Printf("ApiVersion: %#v\n", data.ApiVersion)
+	fmt.Printf("URCap.Name: %#v\n", data.URCap.Name)
+	fmt.Printf("Containers.Image: %#v\n", data.Artifacts.Containers[0].Image)
 }

@@ -1,4 +1,4 @@
-apiVersion: v1      
+apiVersion: v5      
 kind: URCap
 urcap:
   name: hello-port 
@@ -6,17 +6,12 @@ urcap:
   version: 1.0 
 artifacts:
   containers:
-  - name: myservice-name
-    image: myservice-image
+  - image: myservice-image
+    name: myservice-name
     ports:
     - name: http
       containerPort: 8080
-      protocol: TCP         # we might not need
     volumeMounts:
     - mountPath: /mount
-  osgibundles: 
-  - name:
-    bundle: 
-  webarchives:
-  - name:
-    bundle: 
+
+    

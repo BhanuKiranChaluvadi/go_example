@@ -1,0 +1,14 @@
+:imagesdir: images
+:couchbase_version: current
+:toc:
+:project_id: gs-how-to-cmake
+:icons: font
+:source-highlighter: prettify
+:tags: guides,meta
+
+= GO Examples
+
+== Json Schema
+
+    * https://www.jsonschema.net/home[Auto generate Json Schema]
+    * https://npm.runkit.com/ajv[Validate Json Schema]
