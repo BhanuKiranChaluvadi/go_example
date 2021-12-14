@@ -1,0 +1,541 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "apiVersion": "v1",
+            "urcap": {
+                "urcap-id": "hello-port",
+                "urcap-name": "Hello Port",
+                "vendor-id": "universal-robots",
+                "vendor-name": "Universal Robots",
+                "version": 1
+            },
+            "artifacts": {
+                "containers": [
+                    {
+                        "id": "container-id",
+                        "image": "container-image",
+                        "name": "container name",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "name": "http",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/mount"
+                            }
+                        ]
+                    }
+                ],
+                "polyscopebundles": [
+                    {
+                        "bundle": "myosgibundle-1.0-SNAPSHOT.jar",
+                        "name": "myosgibundle"
+                    }
+                ],
+                "webarchives": [
+                    {
+                        "bundle": "mywebarchive",
+                        "name": "mywebarchive"
+                    }
+                ]
+            }
+        }
+    ],
+    "required": [
+        "apiVersion",
+        "urcap",
+        "artifacts"
+    ],
+    "properties": {
+        "apiVersion": {
+            "$id": "#/properties/apiVersion",
+            "type": "string",
+            "title": "The apiVersion schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "v1"
+            ]
+        },
+        "urcap": {
+            "$id": "#/properties/urcap",
+            "type": "object",
+            "title": "The urcap schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "urcap-id": "hello-port",
+                    "urcap-name": "Hello Port",
+                    "vendor-id": "universal-robots",
+                    "vendor-name": "Universal Robots",
+                    "version": 1
+                }
+            ],
+            "required": [
+                "urcap-id",
+                "urcap-name",
+                "vendor-id",
+                "vendor-name",
+                "version"
+            ],
+            "properties": {
+                "urcap-id": {
+                    "$id": "#/properties/urcap/properties/urcap-id",
+                    "type": "string",
+                    "title": "The urcap-id schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "hello-port"
+                    ]
+                },
+                "urcap-name": {
+                    "$id": "#/properties/urcap/properties/urcap-name",
+                    "type": "string",
+                    "title": "The urcap-name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "Hello Port"
+                    ]
+                },
+                "vendor-id": {
+                    "$id": "#/properties/urcap/properties/vendor-id",
+                    "type": "string",
+                    "title": "The vendor-id schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "universal-robots"
+                    ]
+                },
+                "vendor-name": {
+                    "$id": "#/properties/urcap/properties/vendor-name",
+                    "type": "string",
+                    "title": "The vendor-name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "Universal Robots"
+                    ]
+                },
+                "version": {
+                    "$id": "#/properties/urcap/properties/version",
+                    "type": "integer",
+                    "title": "The version schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "artifacts": {
+            "$id": "#/properties/artifacts",
+            "type": "object",
+            "title": "The artifacts schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "containers": [
+                        {
+                            "id": "container-id",
+                            "image": "container-image",
+                            "name": "container name",
+                            "ports": [
+                                {
+                                    "containerPort": 8080,
+                                    "name": "http",
+                                    "protocol": "TCP"
+                                }
+                            ],
+                            "volumeMounts": [
+                                {
+                                    "mountPath": "/mount"
+                                }
+                            ]
+                        }
+                    ],
+                    "polyscopebundles": [
+                        {
+                            "bundle": "myosgibundle-1.0-SNAPSHOT.jar",
+                            "name": "myosgibundle"
+                        }
+                    ],
+                    "webarchives": [
+                        {
+                            "bundle": "mywebarchive",
+                            "name": "mywebarchive"
+                        }
+                    ]
+                }
+            ],
+            "required": [
+                "containers",
+                "polyscopebundles",
+                "webarchives"
+            ],
+            "properties": {
+                "containers": {
+                    "$id": "#/properties/artifacts/properties/containers",
+                    "type": "array",
+                    "title": "The containers schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            {
+                                "id": "container-id",
+                                "image": "container-image",
+                                "name": "container name",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "name": "http",
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/mount"
+                                    }
+                                ]
+                            }
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/artifacts/properties/containers/items",
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/artifacts/properties/containers/items/anyOf/0",
+                                "type": "object",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "id": "container-id",
+                                        "image": "container-image",
+                                        "name": "container name",
+                                        "ports": [
+                                            {
+                                                "containerPort": 8080,
+                                                "name": "http",
+                                                "protocol": "TCP"
+                                            }
+                                        ],
+                                        "volumeMounts": [
+                                            {
+                                                "mountPath": "/mount"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "required": [
+                                    "id",
+                                    "image",
+                                    "name",
+                                    "ports",
+                                    "volumeMounts"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/id",
+                                        "type": "string",
+                                        "title": "The id schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "container-id"
+                                        ]
+                                    },
+                                    "image": {
+                                        "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/image",
+                                        "type": "string",
+                                        "title": "The image schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "container-image"
+                                        ]
+                                    },
+                                    "name": {
+                                        "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "container name"
+                                        ]
+                                    },
+                                    "ports": {
+                                        "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports",
+                                        "type": "array",
+                                        "title": "The ports schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": [],
+                                        "examples": [
+                                            [
+                                                {
+                                                    "containerPort": 8080,
+                                                    "name": "http",
+                                                    "protocol": "TCP"
+                                                }
+                                            ]
+                                        ],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items",
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0",
+                                                    "type": "object",
+                                                    "title": "The first anyOf schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "containerPort": 8080,
+                                                            "name": "http",
+                                                            "protocol": "TCP"
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "containerPort",
+                                                        "name",
+                                                        "protocol"
+                                                    ],
+                                                    "properties": {
+                                                        "containerPort": {
+                                                            "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0/properties/containerPort",
+                                                            "type": "integer",
+                                                            "title": "The containerPort schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                8080
+                                                            ]
+                                                        },
+                                                        "name": {
+                                                            "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0/properties/name",
+                                                            "type": "string",
+                                                            "title": "The name schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "http"
+                                                            ]
+                                                        },
+                                                        "protocol": {
+                                                            "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0/properties/protocol",
+                                                            "type": "string",
+                                                            "title": "The protocol schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "TCP"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "volumeMounts": {
+                                        "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts",
+                                        "type": "array",
+                                        "title": "The volumeMounts schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": [],
+                                        "examples": [
+                                            [
+                                                {
+                                                    "mountPath": "/mount"
+                                                }
+                                            ]
+                                        ],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts/items",
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts/items/anyOf/0",
+                                                    "type": "object",
+                                                    "title": "The first anyOf schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "mountPath": "/mount"
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "mountPath"
+                                                    ],
+                                                    "properties": {
+                                                        "mountPath": {
+                                                            "$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts/items/anyOf/0/properties/mountPath",
+                                                            "type": "string",
+                                                            "title": "The mountPath schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "/mount"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "additionalProperties": true
+                            }
+                        ]
+                    }
+                },
+                "polyscopebundles": {
+                    "$id": "#/properties/artifacts/properties/polyscopebundles",
+                    "type": "array",
+                    "title": "The polyscopebundles schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            {
+                                "bundle": "myosgibundle-1.0-SNAPSHOT.jar",
+                                "name": "myosgibundle"
+                            }
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/artifacts/properties/polyscopebundles/items",
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0",
+                                "type": "object",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "bundle": "myosgibundle-1.0-SNAPSHOT.jar",
+                                        "name": "myosgibundle"
+                                    }
+                                ],
+                                "required": [
+                                    "bundle",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "bundle": {
+                                        "$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0/properties/bundle",
+                                        "type": "string",
+                                        "title": "The bundle schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "myosgibundle-1.0-SNAPSHOT.jar"
+                                        ]
+                                    },
+                                    "name": {
+                                        "$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "myosgibundle"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": true
+                            }
+                        ]
+                    }
+                },
+                "webarchives": {
+                    "$id": "#/properties/artifacts/properties/webarchives",
+                    "type": "array",
+                    "title": "The webarchives schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            {
+                                "bundle": "mywebarchive",
+                                "name": "mywebarchive"
+                            }
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/artifacts/properties/webarchives/items",
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/artifacts/properties/webarchives/items/anyOf/0",
+                                "type": "object",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "bundle": "mywebarchive",
+                                        "name": "mywebarchive"
+                                    }
+                                ],
+                                "required": [
+                                    "bundle",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "bundle": {
+                                        "$id": "#/properties/artifacts/properties/webarchives/items/anyOf/0/properties/bundle",
+                                        "type": "string",
+                                        "title": "The bundle schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "mywebarchive"
+                                        ]
+                                    },
+                                    "name": {
+                                        "$id": "#/properties/artifacts/properties/webarchives/items/anyOf/0/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "mywebarchive"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": true
+                            }
+                        ]
+                    }
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}

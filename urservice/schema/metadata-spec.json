@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft/2019-09/schema#",
+	"id": "metadata_spec.json",
+	"type": "object",
+	"title": "Metadata Specification", 
+	"description": "The Metadata file is a YAML file defining a multi-artifacts based urcap application.",
+	
+	"properties": {
+		"apiVersion": {
+			"type": "string",
+			"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+		}
+	},
+
+	"urcap": {
+		"$id": "#/properties/urcap",
+		"type": "object"
+
+	},
+
+	"artifacts": {
+		"id": "#/properties/artifacts",
+		"type": "object",
+		"patternProperties": {
+			"^[a-zA-Z0-9._-]+$": {
+				"$ref": "#/definitions/service"
+			}
+		},
+		"additionalProperties": false
+	}
+
+}

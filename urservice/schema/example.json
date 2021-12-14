@@ -1,0 +1,33 @@
+{
+    "apiVersion": "v1",
+    "urcap": {
+        "urcap-id": "hello-port",
+        "urcap-name": "Hello Port",
+        "vendor-id": "universal-robots",
+        "vendor-name": "Universal Robots",
+        "version": 1
+    },
+    "artifacts": {
+        "containers": [{
+            "id": "container-id",
+            "image": "container-image",
+            "name": "container name",
+            "ports": [{
+                "containerPort": 8080,
+                "name": "http",
+                "protocol": "TCP"
+            }],
+            "volumeMounts": [{
+                "mountPath": "/mount"
+            }]
+        }],
+        "polyscopebundles": [{
+            "bundle": "myosgibundle-1.0-SNAPSHOT.jar",
+            "name": "myosgibundle"
+        }],
+        "webarchives": [{
+            "bundle": "mywebarchive",
+            "name": "mywebarchive"
+        }]
+    }
+}
