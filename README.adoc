@@ -1,0 +1,14 @@
+:imagesdir: images
+:couchbase_version: current
+:toc:
+:project_id: gs-how-to-cmake
+:icons: font
+:source-highlighter: prettify
+:tags: guides,meta
+
+= GO Examples
+
+== Getting started with GO
+
+    * https://github.com/LinkedInLearning/go-recipes-practical-projects-2883106[go-recipes-practical-projects]
+    * 

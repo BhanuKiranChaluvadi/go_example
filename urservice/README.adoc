@@ -12,3 +12,31 @@
 
     * https://www.jsonschema.net/home[Auto generate Json Schema]
     * https://npm.runkit.com/ajv[Validate Json Schema]
+
+== Inspiration
+
+    * http://json-schema.org/understanding-json-schema[jsonschema]
+    * http://json-schema.org/understanding-json-schema/reference/object.html[Json Object]
+    * https://github.com/docker/awesome-compose[docker compose examples]
+    * https://go.dev/blog/json[GO JSON blog]
+    * https://github.com/instrumenta/kubeval/blob/master/kubeval/kubeval.go[kubeval]
+    * https://github.com/compose-spec/compose-go[compose-go]
+    * https://github.com/compose-spec[compose-spec]
+    * https://github.com/docker/compose[compose]
+    
+== Kubernetes Schema validator Comparision
+
+    * https://www.datree.io/resources/kubernetes-schema-validation[kubernetes-schema-validation]
+
+== GO playground Validate
+
+    * https://github.com/go-playground/validator[go-playground validator]
+
+
+== Run 
+
+    go get gopkg.in/yaml.v2
+
+    go get github.com/pkg/errors
+
+    go run schema.go
