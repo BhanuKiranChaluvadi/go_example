@@ -16,8 +16,19 @@ artifacts:
       protocol: TCP
     volumeMounts:
     - mountPath: /mount
+  - id: container-id2
+    name: container name2
+    image: container-image2
+    ports:
+    - name: http
+      containerPort: 8080
+      protocol: TCP
+    volumeMounts:
+    - mountPath: /mount
   polyscopebundles:
-  - name: myosgibundle
+  - name: myosgibundle1
+    bundle: myosgibundle-1.0-SNAPSHOT.jar
+  - name: myosgibundle2
     bundle: myosgibundle-1.0-SNAPSHOT.jar
   webarchives:
   - name: mywebarchive

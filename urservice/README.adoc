@@ -8,11 +8,6 @@
 
 = GO Examples
 
-== Json Schema
-
-    * https://www.jsonschema.net/home[Auto generate Json Schema]
-    * https://npm.runkit.com/ajv[Validate Json Schema]
-
 == Inspiration
 
     * http://json-schema.org/understanding-json-schema[jsonschema]
@@ -31,6 +26,19 @@
 == GO playground Validate
 
     * https://github.com/go-playground/validator[go-playground validator]
+
+== JSON Schema
+
+    * https://json-schema.org
+    * https://json-schema.org/understanding-json-schema/reference/regular_expressions.html[Reference]
+
+== Validation
+
+    * https://jsonformatter.curiousconcept.com/[Prettify JSON]
+    * https://www.jsonschema.net/home[Auto generate Json Schema]
+    * https://regex101.com/[Validate regular expression against Test string]
+    * https://www.jsonschemavalidator.net/[Validate Json schema againt Input JSON]
+    * https://npm.runkit.com/ajv[Validate Json Schema]
 
 
 == Run 

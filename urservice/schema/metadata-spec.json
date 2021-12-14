@@ -1,32 +1,397 @@
 {
-  "$schema": "http://json-schema.org/draft/2019-09/schema#",
-	"id": "metadata_spec.json",
+	"id": "https://www.universal-robots.com/urcap/metadata.json",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"type": "object",
-	"title": "Metadata Specification", 
+	"title": "URCap Metadata Specification",
 	"description": "The Metadata file is a YAML file defining a multi-artifacts based urcap application.",
-	
+	"required": [
+		"apiVersion",
+		"urcap"
+	],
 	"properties": {
 		"apiVersion": {
 			"type": "string",
+			"pattern": "^[a-zA-Z0-9._-]+$",
 			"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+		},
+		"urcap": {
+			"$ref": "#/$defs/urcap"
+		},
+		"artifacts": {
+			"$ref": "#/$defs/artifacts"
 		}
 	},
-
-	"urcap": {
-		"$id": "#/properties/urcap",
-		"type": "object"
-
-	},
-
-	"artifacts": {
-		"id": "#/properties/artifacts",
-		"type": "object",
-		"patternProperties": {
-			"^[a-zA-Z0-9._-]+$": {
-				"$ref": "#/definitions/service"
+	"$defs": {
+		"urcap": {
+			"$id": "#/properties/urcap",
+			"type": "object",
+			"title": "The urcap schema",
+			"description": "An explanation about the purpose of this instance.",
+			"default": {},
+			"required": [
+				"urcap-id",
+				"vendor-id",
+				"urcap-name",
+				"vendor-name",
+				"version"
+			],
+			"properties": {
+				"urcap-id": {
+					"type": "string",
+					"pattern": "^[a-zA-Z0-9._-]+$",
+					"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+				},
+				"vendor-id": {
+					"type": "string",
+					"pattern": "^[a-zA-Z0-9._-]+$",
+					"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+				},
+				"urcap-name": {
+					"type": "string",
+					"pattern": "^[\\sa-zA-Z0-9_-]+$",
+					"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+				},
+				"vendor-name": {
+					"type": "string",
+					"pattern": "^[\\sa-zA-Z0-9_-]+$",
+					"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+				},
+				"version": {
+					"type": "number",
+					"minimum": 1,
+					"exclusiveMinimum": false,
+					"description": "Version of the Metadata specification used. Tools not implementing required version MUST reject the configuration file."
+				}
+			},
+			"additionalProperties": false
+		},
+		"artifacts": {
+			"$id": "#/properties/artifacts",
+			"type": "object",
+			"title": "The artifacts schema",
+			"description": "An explanation about the purpose of this instance.",
+			"default": {},
+			"properties": {
+				"containers": {
+					"$id": "#/properties/artifacts/properties/containers",
+					"type": "array",
+					"title": "The containers schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": [],
+					"additionalItems": true,
+					"items": {
+						"$id": "#/properties/artifacts/properties/containers/items",
+						"anyOf": [
+							{
+								"$ref": "#/$defs/container"
+							}
+						]
+					}
+				},
+				"polyscopebundles": {
+					"$id": "#/properties/artifacts/properties/polyscopebundles",
+					"type": "array",
+					"title": "The polyscopebundles schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": [],
+					"examples": [
+						[
+							{
+								"bundle": "myosgibundle-1.0-SNAPSHOT.jar",
+								"name": "myosgibundle1"
+							}
+						]
+					],
+					"additionalItems": false,
+					"items": {
+						"$id": "#/properties/artifacts/properties/polyscopebundles/items",
+						"anyOf": [
+							{
+								"$ref": "#/$defs/polyscopebundle"
+							}
+						]
+					}
+				},
+				"webarchives": {
+					"$id": "#/properties/artifacts/properties/webarchives",
+					"type": "array",
+					"title": "The webarchives schema",
+					"description": "An web archive contains a folder with all web related pages.",
+					"default": [],
+					"examples": [
+						[
+							{
+								"bundle": "mywebarchive",
+								"name": "mywebarchive"
+							}
+						]
+					],
+					"additionalItems": false,
+					"items": {
+						"$id": "#/properties/artifacts/properties/webarchives/items",
+						"anyOf": [
+							{
+								"$ref": "#/$defs/webarchive"
+							}
+						]
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"container": {
+			"$id": "#/properties/artifacts/properties/containers/items/anyOf/0",
+			"type": "object",
+			"title": "The container schema",
+			"description": "All the properities related to container run",
+			"examples": [
+				[
+					{
+						"id": "container-id",
+						"image": "container-image",
+						"name": "container name",
+						"ports": [
+							{
+								"containerPort": 8080,
+								"name": "http",
+								"protocol": "TCP"
+							}
+						],
+						"volumeMounts": [
+							{
+								"mountPath": "/mount"
+							}
+						]
+					}
+				]
+			],
+			"required": [
+				"name",
+				"image",
+				"ports"
+			],
+			"properties": {
+				"name": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/name",
+					"type": "string",
+					"title": "The name schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": "",
+					"examples": [
+						"container name"
+					]
+				},
+				"image": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/image",
+					"type": "string",
+					"title": "The image schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": "",
+					"examples": [
+						"container-image"
+					]
+				},
+				"ports": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports",
+					"type": "array",
+					"title": "The ports schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": [],
+					"examples": [
+						[
+							{
+								"containerPort": 8080,
+								"name": "http",
+								"protocol": "TCP"
+							}
+						]
+					],
+					"additionalItems": true,
+					"items": {
+						"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items",
+						"anyOf": [
+							{
+								"$ref": "#/$defs/port"
+							}
+						]
+					}
+				},
+				"volumeMounts": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts",
+					"type": "array",
+					"title": "The volumeMounts schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": [],
+					"examples": [
+						[
+							{
+								"mountPath": "/mount"
+							}
+						]
+					],
+					"additionalItems": false,
+					"items": {
+						"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts/items",
+						"anyOf": [
+							{
+								"$ref": "#/$defs/volume"
+							}
+						]
+					}
+				}
+			},
+			"additionalItems": false,
+			"additionalProperties": false
+		},
+		"port": {
+			"$id": "https://www.universal-robots.com/urcap/metadata/container/port",
+			"type": "object",
+			"title": "Continer port",
+			"description": "These details are used to establish the connection between the docker host and continer",
+			"required": [
+				"name",
+				"containerPort",
+				"protocol"
+			],
+			"properties": {
+				"name": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0/properties/name",
+					"type": "string",
+					"title": "Container port name schema",
+					"description": "This is logical port name on docker host. Port name is resolved to one of the available port number on the docker host and queried using rest api. The logical_port on docker host is mapped to containerPort on container",
+					"pattern": "^[a-zA-Z0-9_-]+$",
+					"minLength": 2,
+					"maxLength": 27,
+					"examples": [
+						"http"
+					]
+				},
+				"containerPort": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0/properties/containerPort",
+					"type": "integer",
+					"title": "The container port number schema",
+					"description": "This is the port number on the container. The container port number is mapped to port name on container host",
+					"minimum": 0,
+					"maximum": 61000,
+					"examples": [
+						8080
+					]
+				},
+				"protocol": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/ports/items/anyOf/0/properties/protocol",
+					"enum": [
+						"TCP",
+						"UDP"
+					],
+					"title": "The container port protocol schema",
+					"description": "Type of port mapping between the container host and container. TCP(Default)/UDP",
+					"default": "TCP",
+					"examples": [
+						"TCP"
+					]
+				},
+				"additionalProperties": false
 			}
 		},
-		"additionalProperties": false
+		"volume": {
+			"$id": "https://www.universal-robots.com/urcap/metadata/container/port",
+			"type": "object",
+			"title": "Continer port",
+			"description": "These details are used to establish the connection between the docker host and continer",
+			"required": [
+				"mountPath"
+			],
+			"properties": {
+				"mountPath": {
+					"$id": "#/properties/artifacts/properties/containers/items/anyOf/0/properties/volumeMounts/items/anyOf/0/properties/mountPath",
+					"type": "string",
+					"title": "The continer mountPath schema",
+					"description": "Absolute path for the data folders to be mounted on container. This folder is ment to have persistant data ",
+					"pattern": "^(/[^/]+)+$",
+					"examples": [
+						"/mount"
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"polyscopebundle": {
+			"$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0",
+			"type": "object",
+			"title": "The polyscope bundle schema",
+			"description": "Necessary paramaters to identify polyscope bundles",
+			"required": [
+				"name",
+				"bundle"
+			],
+			"properties": {
+				"name": {
+					"$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0/properties/name",
+					"type": "string",
+					"title": "The polyscope bundle name schema",
+					"description": "The name of the polyscope bundle",
+					"pattern": "^[a-zA-Z0-9._-]+$",
+					"minLength": 2,
+					"maxLength": 27,
+					"examples": [
+						"myosgibundle1"
+					]
+				},
+				"bundle": {
+					"$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0/properties/bundle",
+					"type": "string",
+					"title": "The polyscope bundle path schema",
+					"description": "Path to the jar file relative to the zipped urcap top folder",
+					"pattern": "^[a-zA-Z0-9._-]+(\\.jar$)",
+					"examples": [
+						"myosgibundle-1.0-SNAPSHOT.jar"
+					]
+				}
+			},
+			"additionalProperties": false
+		},
+		"webarchive": {
+			"$id": "#/properties/artifacts/properties/polyscopebundles/items/anyOf/0",
+			"type": "object",
+			"title": "The polyscope bundle schema",
+			"description": "Necessary paramaters to identify polyscope bundles",
+			"examples": [
+				{
+					"name": "mywebarchive",
+					"folder": "mywebarchive"
+				}
+			],
+			"required": [
+				"name",
+				"folder"
+			],
+			"properties": {
+				"name": {
+					"$id": "#/properties/artifacts/properties/webarchives/items/anyOf/0/properties/name",
+					"type": "string",
+					"title": "The web archive name schema",
+					"description": "The name of the web archive",
+					"pattern": "^[a-zA-Z0-9._-]+$",
+					"minLength": 2,
+					"maxLength": 27,
+					"examples": [
+						"mywebarchive"
+					]
+				},
+				"folder": {
+					"$id": "#/properties/artifacts/properties/webarchives/items/anyOf/0/properties/folder",
+					"type": "string",
+					"title": "The polyscope bundle path schema",
+					"description": "Path to the jar file relative to the zipped urcap top folder",
+					"pattern": "^[a-zA-Z0-9._-]+$",
+					"minLength": 2,
+					"maxLength": 27,
+					"examples": [
+						"mywebarchive"
+					]
+				}
+			},
+			"additionalProperties": false
+		}
 	}
-
 }
