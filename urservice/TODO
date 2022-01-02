@@ -1,0 +1,11 @@
+Please add things to be done.
+
+
+0. Test JSON metadata schema one more time with TYPO's in metadata 
+    eg: image --> img
+
+1. Test with example.yaml file ... 
+    Looks like "must present" field is not throwing an error.
+
+2. 
+

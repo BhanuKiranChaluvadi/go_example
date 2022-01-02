@@ -7,8 +7,7 @@ urcap:
   version: 1.0
 artifacts:
   containers:
-  - id: container-id
-    name: container name
+  - name: container name
     image: container-image
     ports:
     - name: http
@@ -16,8 +15,7 @@ artifacts:
       protocol: TCP
     volumeMounts:
     - mountPath: /mount
-  - id: container-id2
-    name: container name2
+  - name: container name2
     image: container-image2
     ports:
     - name: http
@@ -32,5 +30,5 @@ artifacts:
     bundle: myosgibundle-1.0-SNAPSHOT.jar
   webarchives:
   - name: mywebarchive
-    bundle: mywebarchive
+    folder: mywebarchive
   
