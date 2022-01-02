@@ -1,10 +1,12 @@
-package schema
+// package schema
+package main
 
 import (
 	"fmt"
 	"log"
 	"strings"
 
+	"github.com/BhanuKiranChaluvadi/go_example/tree/main/urservice/loader"
 	"github.com/xeipuuv/gojsonschema"
 )
 
@@ -121,7 +123,7 @@ func specificity(err gojsonschema.ResultError) int {
 }
 
 func main() {
-	err := Load("example.yaml")
+	err := loader.Load("example.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
