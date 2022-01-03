@@ -47,4 +47,10 @@
 
     go get github.com/pkg/errors
 
+    go get -u github.com/gobuffalo/packr/v2/...
+
+    go get -u github.com/gobuffalo/packr/v2/packr2
+
     go run schema.go
+
+    go mod tidy # go: updates to go.mod needed; to update it:

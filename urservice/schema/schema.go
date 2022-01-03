@@ -1,13 +1,13 @@
-// package schema
-package main
+package schema
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
-	"github.com/BhanuKiranChaluvadi/go_example/tree/main/urservice/loader"
 	"github.com/xeipuuv/gojsonschema"
+
+	// Enable support for embedded static resources
+	_ "embed"
 )
 
 // Schema is the metadata-spec JSON schema
@@ -120,11 +120,4 @@ func getMostSpecificError(errors []gojsonschema.ResultError) validationError {
 
 func specificity(err gojsonschema.ResultError) int {
 	return len(strings.Split(err.Field(), "."))
-}
-
-func main() {
-	err := loader.Load("example.yaml")
-	if err != nil {
-		log.Fatal(err)
-	}
 }

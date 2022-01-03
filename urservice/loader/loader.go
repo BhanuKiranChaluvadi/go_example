@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 
+	"github.com/BhanuKiranChaluvadi/go_example/tree/main/urservice/schema"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 )
@@ -35,12 +36,17 @@ func Load(baseFilePath string) error {
 		return err
 	}
 
-	baseFile, err := parseConfig(bytes)
+	dict, err := parseConfig(bytes)
 	if err != nil {
 		return err
 	}
 
-	b, err := json.Marshal(baseFile)
+	if err := schema.Validate(dict); err != nil {
+		return err
+	}
+
+	//	Debug - Print Json
+	b, err := json.Marshal(dict)
 	if err != nil {
 		log.Fatal(err)
 	}
